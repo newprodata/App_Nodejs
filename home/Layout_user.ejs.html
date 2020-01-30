@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="public/img/favicon.ico" type="icon" sizes="16x16">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta Http-Equiv="Cache-Control" Content="no-cache">
+  <meta Http-Equiv="Pragma" Content="no-cache">
+  <meta Http-Equiv="Expires" Content="0">
+  <meta name="google" content="notranslate">
+  <title>Demo 3 | File Upload</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="public/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="public/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/Home" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <div class="dropdown">
+            <a href="#" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown"><%= uname %>  </a>
+            <input type="hidden" id="custname" name="custname" value="<%= uname %>">
+             <input type="hidden" id="custId" name="custId" value="<%= role %>">
+
+
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="/logout" class="dropdown-item">Logout</a>
+            </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link" style="text-align: center;">
+      <!--<img src="../../dist/img/DemoLogo.png"
+           alt="Demo Logo"
+           class="brand-image img-circle elevation-3"
+           style="opacity: .8">-->
+      <span class="brand-text font-weight-light" style="font-weight: bold;">Demo 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="/home" class="nav-link active">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/dashboard" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/stretchrevenue" class="nav-link">
+              <i class="nav-icon fas fa-chart-line"></i>
+              <p>
+                Stretch Revenue
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/charts" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Charts
+              </p>
+            </a>
+          </li>
+         
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>User File</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">File Upload</li>
+            </ol>
+
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card" id="showhide">
+        <div class="card-header">
+          <h3 class="card-title">File Upload</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="col-md-6">
+              <form class="form-horizontal" method="POST" enctype="multipart/form-data" id="fileUploadForm">
+                <div class="form-group">
+                <label class="control-label col-sm-2" for="uploadfile">Upload File:</label>
+                <div class="input-group">
+                  <!--<div class="custom-file">
+                    <input type="file" class="form-control" id="uploadfile" placeholder="Upload File"  name="uploadfile"></input>
+                  </div> -->
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="uploadfile" name="uploadfile">
+                    <label class="custom-file-label" for="uploadfile">Choose file</label>
+                  </div>
+
+                  <div class="input-group-append">
+                    <button class="input-group-text" id="btnSubmit" type="submit">Upload</button>
+                  </div>
+                </div>
+                </div>
+              </form>
+          </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+          <div id="puliengo" style="color: green"></div>
+        </div>
+        <!-- /.card-footer-->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+    <div class="col-md-6">
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Files</h3>
+          <div class="card-tools">
+            <!-- Collapse Button -->
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+          </div>
+          <!-- /.card-tools -->
+          
+        </div>
+      <!-- /.card-header -->
+        <div class="card-body">
+          <div class="col-sm-6" id="listFiles"></div>
+        </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+  <!-- /.card -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2020 <a href="#">Demo</a>.</strong> 
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 
+<script src="../../plugins/jquery/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Bootstrap 4 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="public/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="public/js/demo.js"></script>
+
+
+  <script src="public/js/postrequest.js"></script> 
+  <script src="public/js/getrequest.js"></script>
+  <script>
+    $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('.custom-file-label').html(fileName);
+    });
+    
+  </script>
+
+</body>
+</html>
